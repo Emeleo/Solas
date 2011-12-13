@@ -40,6 +40,9 @@ public class RSLoader extends JFrame implements AppletStub {
 	Tabs tabbed;
 	public RSLoader() {
 		try {
+			setIconImage(Toolkit.getDefaultToolkit().getImage("./res/img/mainicon.png"));
+			setTitle("Solas - Assisting You");
+			initComponents();
 			parseParams();
 			System.out
 					.println("---------------Downloading runescape client----------");
@@ -47,8 +50,7 @@ public class RSLoader extends JFrame implements AppletStub {
 			downloadFile(URL);
 			System.out
 					.println("*********************Running runescape****************");
-			setTitle("Solas - Assisting You");
-			initComponents();
+
 			Applet loader = (Applet) new URLClassLoader(new URL[] { new File(
 					"runescape.jar").toURL() }).loadClass("Rs2Applet")
 					.newInstance();
