@@ -47,11 +47,10 @@ import com.io.HiScore;
 		BufferedImage[] icons = new BufferedImage[23];
 
 		private void getIcons() {
-			System.setProperty("http.agent", ""); 
 			for (int i = 0; i < icons.length; i++) {
 				try {
-					icons[i] = ImageIO.read(new URL(
-							"http://www.runescape.com/img/hiscore/compare/skills/"
+					icons[i] = ImageIO.read(new File(
+							"./res/img/icons/"
 									+ firstCap(Skills.SKILL_NAMES[i]) + ".png"));
 				} catch (MalformedURLException e) {
 					// TODO Auto-generated catch block
@@ -124,7 +123,7 @@ import com.io.HiScore;
 			int[] lvlArray = new HiScore().getLevels(jTextField1.getText());
 			jLabel1.setText("<html>");
 			for (int i = 0; i < lvlArray.length; i++) {	
-				jLabel1.setText(jLabel1.getText() +"<img src=\""+getImagePath(icons[i])+ "\">");
+				jLabel1.setText(jLabel1.getText() +"<img src=\""+getImagePath(icons[i])+ "\"></img>");
 				if (i % 2 == 0) {
 					jLabel1.setText(jLabel1.getText() + lvlArray[i] + "<br> ");
 				} else {
