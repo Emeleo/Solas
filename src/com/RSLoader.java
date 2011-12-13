@@ -38,19 +38,21 @@ public class RSLoader extends JFrame implements AppletStub {
 	RightTab rt;
 	LeftTab lt;
 	Tabs tabbed;
+
 	public RSLoader() {
 		try {
-			setIconImage(Toolkit.getDefaultToolkit().getImage("./res/img/mainicon.png"));
+			getContentPane().setBackground(Color.BLACK);
+			JLabel label = new JLabel("<img src=\""+"./res/img/mainlogo.png"+ "\"></img>");
+			label.setHorizontalAlignment(JLabel.CENTER);
+			getContentPane().add(label);
+			setVisible(true);
+			setSize(756, 503);
+			setIconImage(Toolkit.getDefaultToolkit().getImage(
+					"./res/img/mainicon.png"));
+			parseParams();
+			downloadFile(URL);
 			setTitle("Solas - Assisting You");
 			initComponents();
-			parseParams();
-			System.out
-					.println("---------------Downloading runescape client----------");
-			System.out.println(URL);
-			downloadFile(URL);
-			System.out
-					.println("*********************Running runescape****************");
-
 			Applet loader = (Applet) new URLClassLoader(new URL[] { new File(
 					"runescape.jar").toURL() }).loadClass("Rs2Applet")
 					.newInstance();
@@ -63,7 +65,7 @@ public class RSLoader extends JFrame implements AppletStub {
 			getContentPane().add(loader, BorderLayout.CENTER);
 			tabbed = new Tabs();
 			getContentPane().add(tabbed, BorderLayout.SOUTH);
-			tabbed.setVisible(true);			
+			tabbed.setVisible(true);
 			rt = new RightTab();
 			getContentPane().add(rt, BorderLayout.EAST);
 			rt.setVisible(true);
@@ -72,6 +74,7 @@ public class RSLoader extends JFrame implements AppletStub {
 			lt = new LeftTab();
 			getContentPane().add(lt, BorderLayout.WEST);
 			lt.setVisible(true);
+			getContentPane().remove(label);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -108,8 +111,8 @@ public class RSLoader extends JFrame implements AppletStub {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				SubstanceLookAndFeel.setSkin( new RavenSkin());
-			UIManager.put(SubstanceLookAndFeel.FOCUS_KIND, FocusKind.NONE);
+				SubstanceLookAndFeel.setSkin(new RavenSkin());
+				UIManager.put(SubstanceLookAndFeel.FOCUS_KIND, FocusKind.NONE);
 			}
 		});
 		/* Create and display the form */
