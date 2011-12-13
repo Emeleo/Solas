@@ -2,9 +2,12 @@ package com;
 
 import java.applet.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.net.*;
 import java.io.*;
 import java.util.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import org.pushingpixels.substance.api.SubstanceConstants.FocusKind;
@@ -41,12 +44,9 @@ public class RSLoader extends JFrame implements AppletStub {
 
 	public RSLoader() {
 		try {
-			getContentPane().setBackground(Color.BLACK);
-			JLabel label = new JLabel("<img src=\""+"./res/img/mainlogo.png"+ "\"></img>");
-			label.setHorizontalAlignment(JLabel.CENTER);
-			getContentPane().add(label);
-			setVisible(true);
-			setSize(756, 503);
+
+			SplashScreen splash =SplashScreen.getSplashScreen();
+		
 			setIconImage(Toolkit.getDefaultToolkit().getImage(
 					"./res/img/mainicon.png"));
 			parseParams();
@@ -71,10 +71,11 @@ public class RSLoader extends JFrame implements AppletStub {
 			rt.setVisible(true);
 			setSize(1200, 800);
 			setResizable(false);
+			splash.close();
+			setVisible(true);
 			lt = new LeftTab();
 			getContentPane().add(lt, BorderLayout.WEST);
 			lt.setVisible(true);
-			getContentPane().remove(label);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
